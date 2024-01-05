@@ -1,4 +1,5 @@
 import { Command } from "commander";
+import { parseFile } from "./fileParse.js";
 
 const program = new Command();
 
@@ -7,15 +8,17 @@ const gendiff = () => {
     .name('gendiff')
     .description('Compares two configuration files and shows a difference.')
     .version('1.0.0')
-    .argument('filepath1')
-    .argument('filepath2')
     .option('-h, --help', 'output usage information')
     .option('-f, --format', 'output format')
-    .outputHelp()
+    .argument('filepath1')
+    .argument('filepath2')
+    .action((file1, file2) => {
+      parseFile(file1)
+      parseFile(file2)
+    })
+    // .outputHelp();
 
-  // if (program.help) {
-  //   program.outputHelp();
-  // }
-}
+  program.parse();
+};
 
 export default gendiff;
