@@ -17,6 +17,8 @@ export const genDiff = (file1, file2) => {
   const keys = Object.keys({ ...parsedFile1, ...parsedFile2 }).sort();
   const result = [];
 
+  console.log('hello');
+
   // eslint-disable-next-line no-restricted-syntax
   for (const key of keys) {
     if (!Object.hasOwn(parsedFile1, key)) {
