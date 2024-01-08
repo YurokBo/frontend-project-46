@@ -20,13 +20,13 @@ export const genDiff = (file1, file2) => {
   // eslint-disable-next-line no-restricted-syntax
   for (const key of keys) {
     if (!Object.hasOwn(parsedFile1, key)) {
-      result.push(` + ${key}: ${parsedFile2[key]}`);
+      result.push(`  + ${key}: ${parsedFile2[key]}`);
     } else if (!Object.hasOwn(parsedFile2, key)) {
-      result.push(` - ${key}: ${parsedFile1[key]}`);
+      result.push(`  - ${key}: ${parsedFile1[key]}`);
     } else if (parsedFile1[key] !== parsedFile2[key]) {
-      result.push(` - ${key}: ${parsedFile1[key]}\n + ${key}: ${parsedFile2[key]}`);
+      result.push(`  - ${key}: ${parsedFile1[key]}\n  + ${key}: ${parsedFile2[key]}`);
     } else {
-      result.push(`   ${key}: ${parsedFile1[key]}`);
+      result.push(`    ${key}: ${parsedFile1[key]}`);
     }
   }
 
