@@ -15,7 +15,10 @@ const gendiff = () => {
     .action((file1, file2) => {
       console.log(genDiff(file1, file2));
     });
-  // .outputHelp();
+
+  if (program.help) {
+    program.outputHelp();
+  }
 
   program.parse();
 };

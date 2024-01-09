@@ -5,3 +5,4 @@
 [![Node CI](https://github.com/YurokBo/frontend-project-46/actions/workflows/nodejs.yml/badge.svg)](https://github.com/YurokBo/frontend-project-46/actions)
 
 [![asciicast](https://asciinema.org/a/rbJwMlqGujRToU8piVvZd8c60.svg)](https://asciinema.org/a/rbJwMlqGujRToU8piVvZd8c60)
+[![asciicast](https://asciinema.org/a/sTBRYt7ZqDEmFgKbksFNz2a2K.svg)](https://asciinema.org/a/sTBRYt7ZqDEmFgKbksFNz2a2K)

@@ -1,19 +1,21 @@
 // import { cwd } from 'node:process';
-import path from 'node:path';
+// import path from 'node:path';
 import { readFileSync } from 'node:fs';
+import { getPath } from './helpers.js';
+import { parseFile } from './parser.js';
 
-export const fileReader = (file) => {
-  const filePath = path.resolve(file);
+export const getFile = (file) => {
+  const filePath = getPath(file);
   // const currentPath = cwd();
 
   // console.log(readFileSync(`${currentPath}/${file}`, 'utf8'))
-  // console.log(readFileSync(filePath, 'utf8'))
+  // console.log(readFileSync(filePath, ?'utf8'));
   return readFileSync(filePath, 'utf8');
 };
 
 export const genDiff = (file1, file2) => {
-  const parsedFile1 = JSON.parse(fileReader(file1));
-  const parsedFile2 = JSON.parse(fileReader(file2));
+  const parsedFile1 = parseFile(getFile(file1));
+  const parsedFile2 = parseFile(getFile(file2));
   const keys = Object.keys({ ...parsedFile1, ...parsedFile2 }).sort();
   const result = [];
 
