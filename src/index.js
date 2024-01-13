@@ -6,17 +6,15 @@ import { parseFile } from './parser.js';
 
 export const getFile = (file) => {
   const filePath = getPath(file);
-  // const currentPath = cwd();
 
-  // console.log(readFileSync(`${currentPath}/${file}`, 'utf8'))
-  // console.log(readFileSync(filePath, ?'utf8'));
   return readFileSync(filePath, 'utf8');
 };
 
-export const genDiff = (file1, file2) => {
+const genDiff = (file1, file2) => {
   const parsedFile1 = parseFile(getFile(file1));
   const parsedFile2 = parseFile(getFile(file2));
   const keys = Object.keys({ ...parsedFile1, ...parsedFile2 }).sort();
+
   const result = [];
 
   // eslint-disable-next-line no-restricted-syntax
@@ -34,3 +32,5 @@ export const genDiff = (file1, file2) => {
 
   return `{\n${result.join('\n')}\n}`;
 };
+
+export default genDiff;

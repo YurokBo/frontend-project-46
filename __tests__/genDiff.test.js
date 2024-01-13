@@ -1,4 +1,4 @@
-import { genDiff } from '../fileParse.js';
+import genDiff from '../src/index.js';
 import { expectedDiff } from '../__fixtures__/expected.js';
 
 test('compare two JSON files and generate diff', () => {
