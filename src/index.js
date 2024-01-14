@@ -10,18 +10,32 @@ const genDiff = (file1, file2) => {
   const contentFile2 = parserFile2(getFile(file2));
   const keys = Object.keys({ ...contentFile1, ...contentFile2 }).sort();
 
+  // const result = keys.reduce((acc, key) => {
+  //   if (!Object.hasOwn(contentFile1, key)) {
+  //     return [...acc, `  + ${key}: ${contentFile2[key]}`];
+  //   }
+  //   if (!Object.hasOwn(contentFile2, key)) {
+  //     return [...acc, `  - ${key}: ${contentFile1[key]}`];
+  //   }
+  //   if (contentFile1[key] !== contentFile2[key]) {
+  //     return [...acc, `  - ${key}: ${contentFile1[key]}\n  + ${key}: ${contentFile2[key]}`];
+  //   }
+  //
+  //   return [...acc, `    ${key}: ${contentFile1[key]}`];
+  // }, []);
+
   const result = keys.reduce((acc, key) => {
     if (!Object.hasOwn(contentFile1, key)) {
-      return [...acc, `  + ${key}: ${contentFile2[key]}`];
+      return [...acc, ` ${key}: added`];
     }
     if (!Object.hasOwn(contentFile2, key)) {
-      return [...acc, `  - ${key}: ${contentFile1[key]}`];
+      return [...acc, ` ${key}: deleted`];
     }
     if (contentFile1[key] !== contentFile2[key]) {
-      return [...acc, `  - ${key}: ${contentFile1[key]}\n  + ${key}: ${contentFile2[key]}`];
+      return [...acc, ` ${key}: changed`];
     }
 
-    return [...acc, `    ${key}: ${contentFile1[key]}`];
+    return [...acc, ` ${key}: unchanged`];
   }, []);
 
   return `{\n${result.join('\n')}\n}`;
