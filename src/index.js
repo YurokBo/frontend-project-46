@@ -1,34 +1,28 @@
-// import { cwd } from 'node:process';
-// import path from 'node:path';
-import { readFileSync } from 'node:fs';
-import { getPath } from './helpers.js';
-import { parseFile } from './parser.js';
-
-export const getFile = (file) => {
-  const filePath = getPath(file);
-
-  return readFileSync(filePath, 'utf8');
-};
+import { getFileParser } from './parser.js';
+import { getFile, getFileExt } from './helpers.js';
 
 const genDiff = (file1, file2) => {
-  const parsedFile1 = parseFile(getFile(file1));
-  const parsedFile2 = parseFile(getFile(file2));
-  const keys = Object.keys({ ...parsedFile1, ...parsedFile2 }).sort();
+  const extFile1 = getFileExt(getFile(file1));
+  const extFile2 = getFileExt(getFile(file2));
+  const parserFile1 = getFileParser(extFile1);
+  const parserFile2 = getFileParser(extFile2);
+  const contentFile1 = parserFile1(getFile(file1));
+  const contentFile2 = parserFile2(getFile(file2));
+  const keys = Object.keys({ ...contentFile1, ...contentFile2 }).sort();
 
-  const result = [];
-
-  // eslint-disable-next-line no-restricted-syntax
-  for (const key of keys) {
-    if (!Object.hasOwn(parsedFile1, key)) {
-      result.push(`  + ${key}: ${parsedFile2[key]}`);
-    } else if (!Object.hasOwn(parsedFile2, key)) {
-      result.push(`  - ${key}: ${parsedFile1[key]}`);
-    } else if (parsedFile1[key] !== parsedFile2[key]) {
-      result.push(`  - ${key}: ${parsedFile1[key]}\n  + ${key}: ${parsedFile2[key]}`);
-    } else {
-      result.push(`    ${key}: ${parsedFile1[key]}`);
+  const result = keys.reduce((acc, key) => {
+    if (!Object.hasOwn(contentFile1, key)) {
+      return [...acc, `  + ${key}: ${contentFile2[key]}`];
     }
-  }
+    if (!Object.hasOwn(contentFile2, key)) {
+      return [...acc, `  - ${key}: ${contentFile1[key]}`];
+    }
+    if (contentFile1[key] !== contentFile2[key]) {
+      return [...acc, `  - ${key}: ${contentFile1[key]}\n  + ${key}: ${contentFile2[key]}`];
+    }
+
+    return [...acc, `    ${key}: ${contentFile1[key]}`];
+  }, []);
 
   return `{\n${result.join('\n')}\n}`;
 };
