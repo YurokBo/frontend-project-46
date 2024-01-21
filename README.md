@@ -13,3 +13,4 @@
 ### Demos
 [![asciicast](https://asciinema.org/a/rbJwMlqGujRToU8piVvZd8c60.svg)](https://asciinema.org/a/rbJwMlqGujRToU8piVvZd8c60)
 [![asciicast](https://asciinema.org/a/sTBRYt7ZqDEmFgKbksFNz2a2K.svg)](https://asciinema.org/a/sTBRYt7ZqDEmFgKbksFNz2a2K)
+[![asciicast](https://asciinema.org/a/qczON8FUC9yTICJWc3xZIVA5q.svg)](https://asciinema.org/a/qczON8FUC9yTICJWc3xZIVA5q)
