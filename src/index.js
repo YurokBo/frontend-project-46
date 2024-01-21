@@ -1,6 +1,6 @@
-import stylish from './formatters/stylish.js';
-import { getFile, getFileExt } from './helpers.js';
+import { createAst, getFile, getFileExt } from './helpers.js';
 import { getFileParser } from './parsers.js';
+import stylish from './formatters/stylish.js';
 
 const genDiff = (file1, file2, format = 'stylish') => {
   const extFile1 = getFileExt(getFile(file1));
@@ -11,7 +11,8 @@ const genDiff = (file1, file2, format = 'stylish') => {
   const contentFile2 = parserFile2(getFile(file2));
 
   if (format === 'stylish') {
-    return stylish(contentFile1, contentFile2);
+    const formattedData = createAst(contentFile1, contentFile2);
+    return stylish(formattedData);
   }
 
   return 'No such formatters';
