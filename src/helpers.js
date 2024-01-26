@@ -1,16 +1,11 @@
-import path, { dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import path from 'node:path';
 import { readFileSync } from 'node:fs';
 import _ from 'lodash';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-export const getFilePath = (file) => path.join(__dirname, '..', '__fixtures__', file);
+export const getFilePath = (file) => path.resolve(process.cwd(), '__fixtures__', file);
 
 export const getFile = (file) => {
   const filePath = getFilePath(file);
-
   return readFileSync(filePath, 'utf8');
 };
 
