@@ -11,20 +11,22 @@ const formatValue = (value) => {
 const plain = (value) => {
   const iter = (currentValue, currentKey = '') => {
     const lines = currentValue.map((item) => {
+      const path = `${currentKey}${item.key}`;
+
       if (item.type === 'nested') {
-        return iter(item.children, `${currentKey}${item.key}.`);
+        return iter(item.children, `${path}.`);
       }
 
       if (item.type === 'added') {
-        return `Property '${currentKey}${item.key}' was ${item.type} with value: ${formatValue(item.value)}`;
+        return `Property '${path}' was ${item.type} with value: ${formatValue(item.value)}`;
       }
 
       if (item.type === 'removed') {
-        return `Property '${currentKey}${item.key}' was ${item.type}`;
+        return `Property '${path}' was ${item.type}`;
       }
 
       if (item.type === 'updated') {
-        return `Property '${currentKey}${item.key}' was ${item.type}. From ${formatValue(item.value1)} to ${formatValue(item.value2)}`;
+        return `Property '${path}' was ${item.type}. From ${formatValue(item.value1)} to ${formatValue(item.value2)}`;
       }
 
       return '';
