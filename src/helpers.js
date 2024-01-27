@@ -31,7 +31,7 @@ export const createAst = (file1, file2) => {
 
     if (!_.has(file2, key)) {
       return {
-        key, type: 'deleted', value: file1[key],
+        key, type: 'removed', value: file1[key],
       };
     }
 

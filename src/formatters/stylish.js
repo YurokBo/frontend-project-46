@@ -13,7 +13,7 @@ const formatValue = (data, depth = 0, replacer = ' ') => {
 };
 
 const stylish = (value, replacer = ' ') => {
-  const leftShiftTypes = ['added', 'deleted', 'updated'];
+  const leftShiftTypes = ['added', 'removed', 'updated'];
 
   const iter = (currentValue, depth = 0) => {
     const bracketIndent = replacer.repeat((depth - 1) * 4);
@@ -30,7 +30,7 @@ const stylish = (value, replacer = ' ') => {
         return `${currentIndent}+ ${item.key}: ${formatValue(item.value, depth + 1)}`;
       }
 
-      if (item.type === 'deleted') {
+      if (item.type === 'removed') {
         return `${currentIndent}- ${item.key}: ${formatValue(item.value, depth + 1)}`;
       }
 
