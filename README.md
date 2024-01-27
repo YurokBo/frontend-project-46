@@ -1,3 +1,5 @@
+# File difference calculator
+
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/YurokBo/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/YurokBo/frontend-project-46/actions)
 
@@ -14,3 +16,4 @@
 [![asciicast](https://asciinema.org/a/rbJwMlqGujRToU8piVvZd8c60.svg)](https://asciinema.org/a/rbJwMlqGujRToU8piVvZd8c60)
 [![asciicast](https://asciinema.org/a/sTBRYt7ZqDEmFgKbksFNz2a2K.svg)](https://asciinema.org/a/sTBRYt7ZqDEmFgKbksFNz2a2K)
 [![asciicast](https://asciinema.org/a/qczON8FUC9yTICJWc3xZIVA5q.svg)](https://asciinema.org/a/qczON8FUC9yTICJWc3xZIVA5q)
+[![asciicast](https://asciinema.org/a/1Qpm6lbB1bPyw8zabu0Dd3FWd.svg)](https://asciinema.org/a/1Qpm6lbB1bPyw8zabu0Dd3FWd)
