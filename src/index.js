@@ -1,4 +1,4 @@
-import { createAst, getFile, getFileExt } from './helpers.js';
+import { createDiffTree, getFile, getFileExt } from './helpers.js';
 import { getFileParser } from './parsers.js';
 import getFormatter from './formatters/index.js';
 
@@ -9,7 +9,7 @@ const genDiff = (file1, file2, format = 'stylish') => {
   const parserFile2 = getFileParser(extFile2);
   const contentFile1 = parserFile1(getFile(file1));
   const contentFile2 = parserFile2(getFile(file2));
-  const formattedData = createAst(contentFile1, contentFile2);
+  const formattedData = createDiffTree(contentFile1, contentFile2);
   const formatter = getFormatter(format);
 
   return formatter(formattedData);

@@ -11,7 +11,7 @@ export const getFile = (file) => {
 
 export const getFileExt = (file) => path.extname(file);
 
-export const createAst = (file1, file2) => {
+export const createDiffTree = (file1, file2) => {
   const keys1 = Object.keys(file1 || {});
   const keys2 = Object.keys(file2 || {});
   const keys = _.union(keys1, keys2).sort();
@@ -19,7 +19,7 @@ export const createAst = (file1, file2) => {
   return keys.map((key) => {
     if (_.isObject(file1[key]) && _.isObject(file2[key])) {
       return {
-        key, type: 'nested', children: createAst(file1[key], file2[key]),
+        key, type: 'nested', children: createDiffTree(file1[key], file2[key]),
       };
     }
 
