@@ -6,6 +6,7 @@ const formatValue = (data, depth = 0, replacer = ' ') => {
     const bracketIndent = replacer.repeat((depth - 1) * 4);
     const keys = Object.keys(data);
     const formattedValue = keys.map((key) => `${currentIndent}${key}: ${formatValue(data[key], depth + 1)}`);
+
     return `{\n${formattedValue.join('\n')}\n${bracketIndent}}`;
   }
 
