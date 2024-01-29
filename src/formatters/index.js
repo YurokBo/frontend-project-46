@@ -3,10 +3,6 @@ import plain from './plain.js';
 import json from './json.js';
 
 const getFormatter = (formatter) => {
-  if (formatter === 'stylish') {
-    return stylish;
-  }
-
   if (formatter === 'plain') {
     return plain;
   }
@@ -15,7 +11,7 @@ const getFormatter = (formatter) => {
     return json;
   }
 
-  throw new Error('Unknown formatter');
+  return stylish;
 };
 
 export default getFormatter;
