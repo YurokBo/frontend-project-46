@@ -2,16 +2,16 @@ import stylish from './stylish.js';
 import plain from './plain.js';
 import json from './json.js';
 
-const getFormatter = (formatterName) => {
-  if (formatterName === 'stylish') {
+const getFormatter = (formatter) => {
+  if (formatter === 'stylish') {
     return stylish;
   }
 
-  if (formatterName === 'plain') {
+  if (formatter === 'plain') {
     return plain;
   }
 
-  if (formatterName === 'json') {
+  if (formatter === 'json') {
     return json;
   }
 

@@ -1,16 +1,16 @@
 import _ from 'lodash';
 
-const formatValue = (data, depth = 0, replacer = ' ') => {
-  if (_.isObject(data)) {
+const formatValue = (value, depth = 0, replacer = ' ') => {
+  if (_.isObject(value)) {
     const currentIndent = replacer.repeat(depth * 4);
     const bracketIndent = replacer.repeat((depth - 1) * 4);
-    const keys = Object.keys(data);
-    const formattedValue = keys.map((key) => `${currentIndent}${key}: ${formatValue(data[key], depth + 1)}`);
+    const keys = Object.keys(value);
+    const formattedValue = keys.map((key) => `${currentIndent}${key}: ${formatValue(value[key], depth + 1)}`);
 
     return `{\n${formattedValue.join('\n')}\n${bracketIndent}}`;
   }
 
-  return data;
+  return value;
 };
 
 const stylish = (value, replacer = ' ') => {
