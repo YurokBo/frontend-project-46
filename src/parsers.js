@@ -1,5 +1,17 @@
 import yaml from 'js-yaml';
 
-const getFileParser = (ext) => (ext === 'json' ? JSON.parse : yaml.load);
+const getFileParser = (ext) => {
+  const ymlFormatExtensions = ['yaml', 'yml'];
+
+  if (ext === 'json') {
+    return JSON.parse;
+  }
+
+  if (ymlFormatExtensions.includes(ext)) {
+    return yaml.load;
+  }
+
+  throw new Error('Unknown extension');
+};
 
 export default getFileParser;
