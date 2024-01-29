@@ -5,7 +5,7 @@ const formatValue = (value) => {
     return '[complex value]';
   }
 
-  return typeof value === 'string' ? `'${value}'` : value;
+  return _.isString(value) ? `'${value}'` : value;
 };
 
 const plain = (value) => {

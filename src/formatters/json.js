@@ -10,7 +10,7 @@ const formatValue = (value, depth = 0, replacer = ' ') => {
     return `{\n${formattedValue.join('\n')}\n${bracketIndent}},`;
   }
 
-  return typeof value === 'string' ? `"${value}",` : `${value},`;
+  return _.isString(value) ? `"${value}",` : `${value},`;
 };
 
 const json = (value, replacer = ' ') => {
