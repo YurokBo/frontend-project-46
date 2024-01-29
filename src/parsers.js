@@ -1,9 +1,9 @@
 import yaml from 'js-yaml';
 
 const getFileParser = (ext) => {
-  const ymlFormatExtensions = ['yaml', 'yml'];
+  const ymlFormatExtensions = ['.yaml', '.yml'];
 
-  if (ext === 'json') {
+  if (ext === '.json') {
     return JSON.parse;
   }
 
