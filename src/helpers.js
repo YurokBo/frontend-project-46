@@ -14,9 +14,10 @@ export const getFileExt = (file) => path.extname(file);
 export const createDiffTree = (filepath1, filepath2) => {
   const keys1 = Object.keys(filepath1);
   const keys2 = Object.keys(filepath2);
-  const keys = _.union(keys1, keys2).sort();
+  const keys = _.union(keys1, keys2);
+  const sortedKeys = keys.sort();
 
-  return keys.map((key) => {
+  return sortedKeys.map((key) => {
     if (_.isObject(filepath1[key]) && _.isObject(filepath2[key])) {
       return {
         key, type: 'nested', children: createDiffTree(filepath1[key], filepath2[key]),
