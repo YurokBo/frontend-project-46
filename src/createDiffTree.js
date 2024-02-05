@@ -1,17 +1,6 @@
-import path from 'node:path';
-import { readFileSync, readdirSync } from 'node:fs';
 import _ from 'lodash';
 
-export const getFilePath = (file) => path.resolve(process.cwd(), '__fixtures__', file);
-
-export const getFile = (file) => {
-  const filePath = getFilePath(file);
-  return readFileSync(filePath, 'utf8');
-};
-
-export const getFileExt = (file) => path.extname(file);
-
-export const createDiffTree = (file1, file2) => {
+const createDiffTree = (file1, file2) => {
   const keys1 = Object.keys(file1);
   const keys2 = Object.keys(file2);
   const keys = _.sortBy(_.union(keys1, keys2));
@@ -46,3 +35,5 @@ export const createDiffTree = (file1, file2) => {
     };
   });
 };
+
+export default createDiffTree;

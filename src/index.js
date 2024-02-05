@@ -1,14 +1,34 @@
-import { createDiffTree, getFile, getFileExt } from './helpers.js';
+import path from 'node:path';
+import { readFileSync } from 'node:fs';
 import getFileParser from './parsers.js';
 import getFormatter from './formatters/index.js';
+import createDiffTree from './createDiffTree.js';
 
-const genDiff = (filepath1, filepath2, format = 'stylish') => {
-  const extFile1 = getFileExt(filepath1);
-  const extFile2 = getFileExt(filepath2);
-  const parserFile1 = getFileParser(extFile1);
-  const parserFile2 = getFileParser(extFile2);
-  const contentFile1 = parserFile1(getFile(filepath1));
-  const contentFile2 = parserFile2(getFile(filepath2));
+const getFilePath = (file) => {
+  // const pathToDir = path.resolve(file);
+  // console.log('pathToDir', pathToDir);
+  // console.log(`Current directory: ${process.cwd()}`);
+
+  return path.resolve(process.cwd(), '__fixtures__', file);
+};
+
+const getFile = (file) => {
+  const filePath = getFilePath(file);
+  return readFileSync(filePath, 'utf8');
+};
+
+const getFileExt = (file) => path.extname(file);
+
+const getContent = (file) => {
+  const ext = getFileExt(file);
+  const parser = getFileParser(ext);
+
+  return parser(getFile(file));
+};
+
+const genDiff = (file1, file2, format = 'stylish') => {
+  const contentFile1 = getContent(file1);
+  const contentFile2 = getContent(file2);
   const diffTree = createDiffTree(contentFile1, contentFile2);
   const formatter = getFormatter(format);
 
