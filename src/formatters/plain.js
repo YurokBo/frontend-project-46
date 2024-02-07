@@ -29,10 +29,14 @@ const plain = (value) => {
         return `Property '${path}' was ${item.type}. From ${formatValue(item.value1)} to ${formatValue(item.value2)}`;
       }
 
-      return '';
+      if (item.type === 'unchanged') {
+        return null;
+      }
+
+      return null;
     });
 
-    return lines.filter((line) => line.length).join('\n');
+    return lines.filter((line) => line).join('\n');
   };
   return iter(value);
 };

@@ -42,7 +42,11 @@ const stylish = (value, replacer = ' ') => {
         ].join('\n');
       }
 
-      return `${currentIndent}${item.key}: ${formatValue(item.value, depth + 1)}`;
+      if (item.type === 'unchanged') {
+        return `${currentIndent}${item.key}: ${formatValue(item.value, depth + 1)}`;
+      }
+
+      return null;
     });
 
     return `{\n${lines.join('\n')}\n${bracketIndent}}`;
