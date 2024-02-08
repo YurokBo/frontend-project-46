@@ -4,13 +4,7 @@ import getFileParser from './parsers.js';
 import getFormatter from './formatters/index.js';
 import createDiffTree from './createDiffTree.js';
 
-const getFilePath = (file) => {
-  // const pathToDir = path.resolve(file);
-  // console.log('pathToDir', pathToDir);
-  // console.log(`Current directory: ${process.cwd()}`);
-
-  return path.resolve(process.cwd(), '__fixtures__', file);
-};
+const getFilePath = (file) => path.resolve(process.cwd(), '__fixtures__', file);
 
 const getFile = (file) => {
   const filePath = getFilePath(file);

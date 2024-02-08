@@ -13,7 +13,7 @@ const formatValue = (value, depth = 0, replacer = ' ') => {
   return value;
 };
 
-const stylish = (value, replacer = ' ') => {
+const getStylishDiff = (value, replacer = ' ') => {
   const leftShiftTypes = ['added', 'removed', 'updated'];
 
   const iter = (currentValue, depth = 0) => {
@@ -55,4 +55,4 @@ const stylish = (value, replacer = ' ') => {
   return iter(value, 1);
 };
 
-export default stylish;
+export default getStylishDiff;

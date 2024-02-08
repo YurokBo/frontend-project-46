@@ -1,16 +1,16 @@
-import stylish from './stylish.js';
-import plain from './plain.js';
+import getStylishDiff from './stylish.js';
+import getPlainDiff from './plain.js';
 
 const getFormatter = (formatter) => {
   if (formatter === 'plain') {
-    return plain;
+    return getPlainDiff;
   }
 
   if (formatter === 'json') {
     return JSON.stringify;
   }
 
-  return stylish;
+  return getStylishDiff;
 };
 
 export default getFormatter;

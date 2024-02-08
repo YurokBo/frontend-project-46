@@ -10,7 +10,7 @@ const getFileParser = (ext) => {
       return JSON.parse;
 
     default:
-      throw new Error('Invalid extension');
+      throw new Error('Invalid format');
   }
 };
 

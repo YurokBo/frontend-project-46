@@ -8,7 +8,7 @@ const formatValue = (value) => {
   return _.isString(value) ? `'${value}'` : value;
 };
 
-const plain = (value) => {
+const getPlainDiff = (value) => {
   const iter = (currentValue, currentKey = '') => {
     const lines = currentValue.map((item) => {
       const path = `${currentKey}${item.key}`;
@@ -41,4 +41,4 @@ const plain = (value) => {
   return iter(value);
 };
 
-export default plain;
+export default getPlainDiff;
