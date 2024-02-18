@@ -1,16 +1,18 @@
 import getStylishDiff from './stylish.js';
 import getPlainDiff from './plain.js';
 
-const getFormatter = (formatter) => {
-  if (formatter === 'plain') {
-    return getPlainDiff;
-  }
-
-  if (formatter === 'json') {
-    return JSON.stringify;
-  }
-
-  return getStylishDiff;
+const formatters = {
+  json: JSON.stringify,
+  stylish: getStylishDiff,
+  plain: getPlainDiff,
 };
 
-export default getFormatter;
+const getFormattedFile = (data, formatter) => {
+  if (!Object.hasOwn(formatters, formatter)) {
+    throw new Error('Unknown formatter');
+  }
+
+  return formatters[formatter](data);
+};
+
+export default getFormattedFile;

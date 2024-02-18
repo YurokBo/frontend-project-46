@@ -1,17 +1,17 @@
 import yaml from 'js-yaml';
 
-const getFileParser = (ext) => {
-  switch (ext) {
-    case '.yaml':
-    case '.yml':
-      return yaml.load;
-
-    case '.json':
-      return JSON.parse;
-
-    default:
-      throw new Error('Invalid format');
-  }
+const parsers = {
+  json: JSON.parse,
+  yaml: yaml.load,
+  yml: yaml.load,
 };
 
-export default getFileParser;
+const getFileData = (data, parser) => {
+  if (!Object.hasOwn(parsers, parser)) {
+    throw new Error('Unknown parser');
+  }
+
+  return parsers[parser](data);
+};
+
+export default getFileData;
