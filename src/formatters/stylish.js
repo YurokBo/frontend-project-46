@@ -5,7 +5,7 @@ const makeIndent = (count) => `${'  '.repeat(count * 2)}`;
 const formatValue = (value, depth = 0) => {
   if (_.isObject(value)) {
     const keys = Object.keys(value);
-    const formattedValue = keys.map((key) => `${makeIndent(depth + 1)}${key}: ${formatValue(value[key], depth + 1)}`);
+    const formattedValue = keys.map((key) => `    ${makeIndent(depth)}${key}: ${formatValue(value[key], depth + 1)}`);
 
     return `{\n${formattedValue.join('\n')}\n${makeIndent(depth)}}`;
   }
@@ -16,7 +16,7 @@ const formatValue = (value, depth = 0) => {
 const getStylishDiff = (value, depth = 0) => {
   const lines = value.map((item) => {
     if (item.type === 'nested') {
-      return `${makeIndent(depth + 1)}${item.key}: ${getStylishDiff(item.children, depth + 1)}`;
+      return `    ${makeIndent(depth)}${item.key}: ${getStylishDiff(item.children, depth + 1)}`;
     }
 
     if (item.type === 'added') {
@@ -35,7 +35,7 @@ const getStylishDiff = (value, depth = 0) => {
     }
 
     if (item.type === 'unchanged') {
-      return `${makeIndent(depth + 1)}${item.key}: ${formatValue(item.value, depth + 1)}`;
+      return `    ${makeIndent(depth)}${item.key}: ${formatValue(item.value, depth + 1)}`;
     }
 
     return null;
