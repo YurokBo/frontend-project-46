@@ -4,7 +4,7 @@ import getFileData from './parsers.js';
 import getFormattedFile from './formatters/index.js';
 import createDiffTree from './createDiffTree.js';
 
-const getFilePath = (file) => path.resolve(process.cwd(), '__fixtures__', file);
+const getFilePath = (file) => path.resolve(process.cwd(), file);
 
 const readFile = (file) => {
   const filePath = getFilePath(file);
