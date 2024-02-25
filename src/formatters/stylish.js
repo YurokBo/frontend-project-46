@@ -13,11 +13,11 @@ const stringify = (value, depth = 0) => {
   return value;
 };
 
-const getStylishDiff = (value, depth = 0) => {
+const createStylishDiff = (value, depth = 0) => {
   const lines = value.map((item) => {
     switch (item.type) {
       case 'nested':
-        return `    ${makeIndent(depth)}${item.key}: ${getStylishDiff(item.children, depth + 1)}`;
+        return `    ${makeIndent(depth)}${item.key}: ${createStylishDiff(item.children, depth + 1)}`;
       case 'added':
         return `  ${makeIndent(depth)}+ ${item.key}: ${stringify(item.value, depth + 1)}`;
       case 'removed':
@@ -37,4 +37,4 @@ const getStylishDiff = (value, depth = 0) => {
   return `{\n${lines.join('\n')}\n${makeIndent(depth)}}`;
 };
 
-export default getStylishDiff;
+export default createStylishDiff;

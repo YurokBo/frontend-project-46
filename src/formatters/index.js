@@ -1,10 +1,10 @@
-import getStylishDiff from './stylish.js';
-import getPlainDiff from './plain.js';
+import createStylishDiff from './stylish.js';
+import createPlainDiff from './plain.js';
 
 const formatters = {
   json: JSON.stringify,
-  stylish: getStylishDiff,
-  plain: getPlainDiff,
+  stylish: createStylishDiff,
+  plain: createPlainDiff,
 };
 
 const getFormattedFile = (data, formatter) => {

@@ -8,7 +8,7 @@ const stringify = (value) => {
   return _.isString(value) ? `'${value}'` : value;
 };
 
-const getPlainDiff = (value) => {
+const createPlainDiff = (value) => {
   const iter = (currentValue, currentKey = '') => {
     const lines = currentValue.map((item) => {
       const path = `${currentKey}${item.key}`;
@@ -34,4 +34,4 @@ const getPlainDiff = (value) => {
   return iter(value);
 };
 
-export default getPlainDiff;
+export default createPlainDiff;
