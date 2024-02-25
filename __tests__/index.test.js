@@ -5,8 +5,6 @@ import path from 'node:path';
 import { jest } from '@jest/globals';
 import genDiff from '../src/index.js';
 
-global.jest = jest;
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
