@@ -9,7 +9,7 @@ const formatters = {
 
 const getFormattedFile = (data, formatter) => {
   if (!Object.hasOwn(formatters, formatter)) {
-    throw new Error('Unknown formatter');
+    throw new Error(`Unknown formatter ${formatter}`);
   }
 
   return formatters[formatter](data);

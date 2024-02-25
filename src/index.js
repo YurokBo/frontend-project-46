@@ -4,19 +4,19 @@ import getFileData from './parsers.js';
 import getFormattedFile from './formatters/index.js';
 import createDiffTree from './createDiffTree.js';
 
-const getFilePath = (file) => path.resolve(process.cwd(), file);
+const buildFullPath = (file) => path.resolve(process.cwd(), file);
 
 const readFile = (file) => {
-  const filePath = getFilePath(file);
+  const filePath = buildFullPath(file);
   return readFileSync(filePath, 'utf8');
 };
 
-const getParserType = (file) => path.extname(file).slice(1);
+const getExtension = (file) => path.extname(file).slice(1);
 
 const getContent = (file) => {
-  const parser = getParserType(file);
+  const extension = getExtension(file);
 
-  return getFileData(readFile(file), parser);
+  return getFileData(readFile(file), extension);
 };
 
 const genDiff = (file1, file2, format = 'stylish') => {

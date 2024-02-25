@@ -6,12 +6,12 @@ const parsers = {
   yml: yaml.load,
 };
 
-const getFileData = (data, parser) => {
-  if (!Object.hasOwn(parsers, parser)) {
-    throw new Error('Unknown parser');
+const getFileData = (data, type) => {
+  if (!Object.hasOwn(parsers, type)) {
+    throw new Error(`Unknown parser ${type}`);
   }
 
-  return parsers[parser](data);
+  return parsers[type](data);
 };
 
 export default getFileData;
